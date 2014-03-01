@@ -1,0 +1,6 @@
+0x00000000:irmovl $0x00000009,%edx
+0x00000006:irmovl $0x00000021,%ebx
+0x0000000c:subl %edx,%ebx
+0x0000000e:irmovl $0x00000128,%esp
+0x00000014:rmmovl %esp,0x00000100(%ebx)
+0x0000001a:halt

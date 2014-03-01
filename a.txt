@@ -1,0 +1,80 @@
+ if (E < 0 || E >= lines)
+            {
+                E_icode.Text = "0";
+                E_ifun.Text = "0";
+                E_valC.Text = "0x00000000";
+                E_valA.Text = "0x00000000";
+                E_valB.Text = "0x00000000";
+                E_dstE.Text = "8";
+                E_dstM.Text = "8";
+                E_srcA.Text = "8";
+                E_srcB.Text = "8";
+            }
+            else
+            {
+                E_icode.Text = D_icode.Text;
+                E_ifun.Text = D_ifun.Text;
+                E_valC.Text = D_valC.Text;
+                E_dstE.Text = D_rB.Text;
+                E_srcA.Text = D_rA.Text;
+                E_srcB.Text = "8";
+                if (E_icode.Text == "2")
+                {
+                    E_dstE.Text = "8";
+                }
+                if (D_rA.Text != "8" && D_rB.Text != "8")
+                {
+                    E_srcA.Text = D_rA.Text;
+                    E_srcB.Text = D_rB.Text;
+                }
+                write_into_valA(int.Parse(E_srcA.Text));
+                write_into_valB(int.Parse(E_srcB.Text));
+                //利用转发以避免冒险
+                if ((E_icode.Text == "6" || E_icode.Text == "5" || E_icode.Text == "4"))
+                {
+                    if (E_srcA.Text == M_dstE.Text)
+                    {
+                        E_valA.Text = M_valE.Text;
+                    }
+                    if (E_srcB.Text == W_dstE.Text)
+                    {                        
+                        E_valB.Text = W_valE.Text;
+                    }
+                    if (E_srcA.Text == W_dstE.Text)
+                    {
+                        E_valA.Text = W_valE.Text;
+                    }
+                    if (E_srcB.Text == M_dstE.Text)
+                    {
+                        E_valB.Text = M_valE.Text;
+                    }
+                }
+                if (E_icode.Text == "2")
+                {
+                    E_dstE.Text = D_rB.Text;
+                    E_srcB.Text = "8";
+                }
+                if (E_icode.Text == "4")
+                {
+                    E_dstE.Text = "8";
+                }
+                if (E_icode.Text == "5")
+                {
+                    E_dstE.Text = "8";
+                    E_dstM.Text = D_rA.Text;
+                    E_srcA.Text = "8";
+                    E_srcB.Text = D_rB.Text;
+                }
+                if (E_icode.Text == "6")
+                {
+                    E_dstM.Text = "8";
+                    E_dstE.Text = D_rB.Text;
+                    E_srcA.Text = D_rA.Text;
+                    E_srcB.Text = D_rB.Text;
+                }
+                if (E_icode.Text == "1")
+                {
+                    E_valA.Text = "0x00000000";
+                    E_valB.Text = "0x00000000";
+                }
+            }
